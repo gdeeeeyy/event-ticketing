@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import BarcodeScannerComponent from "react-qr-barcode-scanner";
 
-// Corrected component name (capitalize Attendee)
 const Attendee: React.FC = () => {
-  const [barcode, setBarcode] = useState<Record<string, any> | null>(null);  // Corrected type
+  const [barcode, setBarcode] = useState<Record<string, any> | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   // Handle the barcode result
   const handleBarcodeScan = (result: any) => {
     if (result) {
       try {
-        setBarcode(JSON.parse(result.text)); // Set the scanned barcode text
+        setBarcode(JSON.parse(result.text)); // Parse and set JSON data
+        setError(null); // Clear any previous error
       } catch (e) {
         setError("Failed to parse barcode data as JSON.");
       }
@@ -45,19 +45,21 @@ const Attendee: React.FC = () => {
       {barcode && (
         <div>
           <h2>Scanned Barcode Data:</h2>
-          {/* Display each individual field from the barcode JSON */}
-          <div>
-            <p><strong>ID:</strong> {barcode.id}</p>
-            <p><strong>Name:</strong> {barcode.name}</p>
-            <p><strong>Status:</strong> {barcode.isActive ? "Active" : "Inactive"}</p>
-            <p><strong>Age:</strong> {barcode.details?.age}</p>
-            <p><strong>Hobbies:</strong> {barcode.details?.hobbies?.join(", ")}</p>
+          <div style={{ backgroundColor: "#f4f4f4", padding: "10px", borderRadius: "5px" }}>
+            {Object.entries(barcode).map(([key, value], index) => (
+              <div key={index} style={{ marginBottom: "10px" }}>
+                <p>
+                  <strong>{key}:</strong>
+                </p>
+                <p>{String(value)}</p>
+              </div>
+            ))}
           </div>
         </div>
       )}
 
-      {/* Display Errors
-      {error && <p style={{ color: "red" }}>{error}</p>} */}
+      {/* Display Errors */}
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 };
