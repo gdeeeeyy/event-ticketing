@@ -25,7 +25,7 @@ const Attendee: React.FC = () => {
 
   return (
     <div>
-      <h1>Barcode Scanner</h1>
+      <h1>QR Code Scanner</h1>
 
       {/* Barcode Scanner Component */}
       <BarcodeScannerComponent
@@ -44,7 +44,7 @@ const Attendee: React.FC = () => {
       {/* Display Scanned Barcode */}
       {barcode && (
         <div>
-          <h2>Scanned Barcode Data:</h2>
+          <h2>Scanned QR Code Data:</h2>
           <div style={{ backgroundColor: "#f4f4f4", padding: "10px", borderRadius: "5px" }}>
             {Object.entries(barcode).map(([key, value], index) => (
               <div key={index} style={{ marginBottom: "10px" }}>
@@ -57,9 +57,6 @@ const Attendee: React.FC = () => {
           </div>
         </div>
       )}
-
-      {/* Display Errors */}
-      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 };
