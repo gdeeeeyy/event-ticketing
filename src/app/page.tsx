@@ -72,7 +72,6 @@ const Home: NextPage = () => {
         "Would you like to be a panel member for the debate?\n\nTopic : Traditional Art Vs AI Infused Art",
         "If yes, which side of the argument are you will to support?",
         "What would be your argument for the side that you've chosen for the debate?",
-        "Email Address",
         "Mobile Number (For further communication)",
       ];
 
@@ -85,6 +84,7 @@ const Home: NextPage = () => {
         "Which event do you want to be a part of? [ A person can participate in any number of event ]": "Events Interested",
         Name: "Full Name",
         Year: "Academic Year",
+        "Email Address": "email",
         "Department & Section\n( Example : IT-A )": "Department",
         "School / College Name": "Institution Name",
         "Department/Section": "Department",
@@ -124,7 +124,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Attendee />
-      <QRCodes data={qrData} />
+      <QRCodes data={qrData} /> 
     </>
   );
 };

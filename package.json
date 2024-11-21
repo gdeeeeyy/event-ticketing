@@ -6,19 +6,26 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "email": "email dev"
   },
   "dependencies": {
+    "@react-email/components": "0.0.28",
+    "@react-email/img": "0.0.10",
     "@thewirv/react-barcode-scanner": "^3.3.5",
     "axios": "^1.7.7",
     "googleapis": "^144.0.0",
+    "jsqr": "^1.4.0",
     "next": "15.0.3",
     "next-qr-reader": "^1.0.1",
     "next-qrcode": "^2.5.1",
     "pako": "^2.1.0",
+    "qrcode": "^1.5.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-email": "3.0.2",
     "react-qr-barcode-scanner": "^2.0.0",
+    "resend": "^4.0.1",
     "use-barcode-detection": "^1.0.2"
   },
   "devDependencies": {
