@@ -11,26 +11,22 @@ import {
     Section,
     Text,
   } from "@react-email/components";
-  import * as React from "react";
-  import { useQRCode } from 'next-qrcode';
+  import React, { useState } from "react";
+  // import QRCode from 'react-qr-code';
+  import QRCode from 'qrcode';
   
   interface mailDeets {
-    Name?: string;
-    Events?: string;
-    Deets?:string[];
+    Name?: string,
+    Events?: string,
+    Deets?:{ [key: string]: any };
   }
   
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : "";
-  
   export const MailTemplate = ({
-    Name,
+    Name, 
     Events,
-    Deets,
+    Deets
   }: mailDeets) => {
-    const { Canvas } = useQRCode();
-  
+  const value={Deets};
     return (
       <Html>
         <Head />
@@ -38,7 +34,7 @@ import {
         <Body style={main}>
           <Container style={container}>
             <Section style={logo}>
-              <Img src='public/kalaiyugam-logo.png' width={114} />
+            <a href="https://imgur.com/ks7TzIs"><img src="https://i.imgur.com/ks7TzIs.png" title="source: imgur.com" width="100px" /></a>
             </Section>
             <Section style={sectionsBorders}>
               <Row>
@@ -58,22 +54,19 @@ import {
               <Text style={paragraph}>
               Please ensure you carry a copy of this email as it serves as your OD letter and save the attached QR code for verification of your registration for the following events {Events}.
               </Text>
-              <Canvas
-                text={Deets}
-                options={{
-                  errorCorrectionLevel: 'M',
-                  margin: 3,
-                  scale: 4,
-                  width: 200,
-                  color: {
-                    dark: '#000000',
-                    light: '#FFFFFF',
-                  },
-                }}
-              />
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px' }}>
+              {value && (
+                    <QRCode
+                        value={Deets}
+                        bgColor="#FFFFFF"
+                        fgColor="#000000"
+                        size="35%"
+                    />
+                )}
+                </div>
               <Text style={paragraph}>
               If you have any questions or require further assistance, feel free to contact us at{" "}
-                <Link href="#" style={link}>
+                <Link href="impact@citchennai.net" style={link}>
                 impact@citchennai.net
                 </Link>{" "}
               </Text>
@@ -133,12 +126,12 @@ import {
   };
   
   const sectionBorder = {
-    borderBottom: "1px solid rgb(238,238,238)",
+    borderBottom: "1px solid  rgb(0, 0, 0)",
     width: "249px",
   };
   
   const sectionCenter = {
-    borderBottom: "1px solid rgb(145,71,255)",
+    borderBottom: "1px solid  rgb(0, 0, 0)",
     width: "102px",
   };
   

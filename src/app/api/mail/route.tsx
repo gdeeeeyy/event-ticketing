@@ -6,17 +6,15 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
     try {
-        const { email, Name, Events, Deets } = await request.json();
-
-        // Wait for the rendered HTML
-        const htmlContent = await render(MailTemplate({ Name, Events, Deets }));
+        const {Name, email, Events, Deets}=await request.json();
+        console.log(Deets)
 
         // Send the email  
         const { data, error } = await resend.emails.send({
             from: "noreply@resend.dev",
-            to: [email],
+            to: "gd14405@gmail.com",
             subject: "Confirmation of Your Registration for Kalaiyugam on Nov 30, 2024 - Reg.",
-            html: htmlContent,
+            react: <MailTemplate Name={Name} Events={Events} Deets={Deets}/>,
         });
 
         if (error) {
