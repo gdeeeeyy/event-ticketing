@@ -132,6 +132,7 @@ const Home: NextPage = () => {
 
       <input type="text" value={inputValue} onChange={handleInputChange} />
       <button onClick={handleSubmit}>Submit</button>
+      
       {/* <div>
         <h3>All Keys:</h3>
         <ul>
@@ -141,7 +142,7 @@ const Home: NextPage = () => {
         </ul>
       </div> */}
 
-      {qrData.length > 0 && (
+      {/* {qrData.length > 0 && (
         <button
           onClick={async () => {
             try {
@@ -163,7 +164,36 @@ const Home: NextPage = () => {
           Send First Email
         </button>
       )}
-    </>
+     */}
+
+          {qrData.length > 0 && (
+            <div>
+              {qrData.map((item, index) => (
+                <button
+                  key={index}
+                  onClick={async () => {
+                    try {
+                      const parsedItem = JSON.parse(item);
+                      await fetch("/api/mail", {
+                        method: "POST",
+                        body: JSON.stringify({
+                          Name: parsedItem["Full Name"],
+                          email: parsedItem["email"],
+                          Events: parsedItem["Events Interested"],
+                          Deets: JSON.stringify(parsedItem),
+                        }),
+                      });
+                    } catch (error) {
+                      console.error(`Failed to send email for item ${index + 1}:`, error);
+                    }
+                  }}
+                >
+                  Send Email {index + 1}
+                </button>
+              ))}
+            </div>
+          )}
+</>
   );
 };
 

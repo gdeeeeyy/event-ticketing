@@ -12,7 +12,7 @@ export async function POST(request: Request) {
         // Send the email  
         const { data, error } = await resend.emails.send({
             from: "noreply@resend.dev",
-            to: "gd14405@gmail.com",
+            to: [email],
             subject: "Confirmation of Your Registration for Kalaiyugam on Nov 30, 2024 - Reg.",
             react: <MailTemplate Name={Name} Events={Events} Deets={Deets}/>,
         });
