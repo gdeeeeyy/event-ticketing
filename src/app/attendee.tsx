@@ -6,6 +6,7 @@ const Attendee: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [readQr, setReadQr] = useState<Record<string, any>[]>([]);
   const [scannedCodes, setScannedCodes] = useState<Set<string>>(new Set()); // To track scanned QR codes
+  const [showAtt, setShowAtt] = useState(false);
 
   // Function to store the read QR
   const addObj = (newObj: Record<string, any>) => {
@@ -28,7 +29,7 @@ const Attendee: React.FC = () => {
   const handleBarcodeScan = (result: any) => {
     if (result) {
       try {
-        const parsedData = JSON.parse(result.text); // Parse the scanned QR code
+        const parsedData = JSON.parse(result["text"]); // Parse the scanned QR code
         setBarcode(parsedData); // Update barcode state with scanned data
 
         // Call addObj to check and add the QR code if it's not a duplicate
@@ -38,6 +39,10 @@ const Attendee: React.FC = () => {
       }
     }
   };
+
+  const handleClick = () =>{
+    setShowAtt((prev)=>!prev);
+  }
 
   return (
     <div>
@@ -77,14 +82,18 @@ const Attendee: React.FC = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> 
       )}
+
+      <button type="button" onClick={handleClick}>
+        {showAtt ? "Hide Scanned-In Attendees" : "Show Scanned-In Attendees"}
+      </button>
 
       {/* Display error message if there's any */}
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       {/* Optional: Display the list of scanned QR codes */}
-      <pre>{JSON.stringify(readQr, null, 2)}</pre>
+      { showAtt && <pre>{JSON.stringify(readQr, null, 2)}</pre>}
       <br/>
     </div>
   );

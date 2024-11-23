@@ -3,7 +3,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { useState, useEffect } from "react";
-// import Attendee from "./attendee";
+import Attendee from "./attendee";
 
 const Home: NextPage = () => {
   const [qrData, setQrData] = useState<string[]>([]);
@@ -128,11 +128,11 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* <Attendee/> */}
+      <Attendee/>
 
       <input type="text" value={inputValue} onChange={handleInputChange} />
       <button onClick={handleSubmit}>Submit</button>
-      
+
       {/* <div>
         <h3>All Keys:</h3>
         <ul>
@@ -163,8 +163,7 @@ const Home: NextPage = () => {
         >
           Send First Email
         </button>
-      )}
-     */}
+      )} */}
 
           {qrData.length > 0 && (
             <div>
