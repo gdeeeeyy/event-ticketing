@@ -19,7 +19,6 @@ interface mailDeets {
   Deets?: string;
 }
 
-// The email template (with QR code URL passed as prop)
 export const MailTemplate = ({ Name, Events, Deets }: mailDeets) => {
   return (
     <Html>
@@ -27,16 +26,30 @@ export const MailTemplate = ({ Name, Events, Deets }: mailDeets) => {
       <Preview>Confirmation of Your Registration for Kalaiyugam on Nov 30, 2024 - Reg.</Preview>
       <Body style={main}>
         <Container style={container}>
-          <Section style={logo}>
-            <div>
-            <a href="https://imgur.com/nQuHLgb">
-              <img
-                src="https://i.imgur.com/nQuHLgb.png"
-                title="source: imgur.com"
-                width="350px"
-              />
-            </a>
-            </div>
+          <Section>
+            <table
+              width="100%"
+              style={{
+                borderSpacing: 0,
+                borderCollapse: "collapse",
+                textAlign: "center",
+              }}
+            >
+              <tr>
+                <td style={{ padding: "30px", textAlign: "center" }}>
+                  <img
+                    src="https://i.imgur.com/nQuHLgb.png"
+                    alt="Kalaiyugam Logo"
+                    width="350px"
+                    style={{
+                      display: "block",
+                      margin: "0 auto",
+                      maxWidth: "100%",
+                    }}
+                  />
+                </td>
+              </tr>
+            </table>
           </Section>
           <Section style={sectionsBorders}>
             <Row>
@@ -48,7 +61,7 @@ export const MailTemplate = ({ Name, Events, Deets }: mailDeets) => {
           <Section style={content}>
             <Text style={paragraph}>Greetings {Name}!</Text>
             <Text style={paragraph}>
-              We are delighted to confirm your registration for Kalaiyugam: A
+              We are delighted to confirm your registration for Kalaiyugam: The
               Celebration of Art, our flagship event celebrating creativity,
               scheduled for 30th November 2024. This email serves as both a
               confirmation of your participation and an official On-Duty letter,
@@ -57,15 +70,38 @@ export const MailTemplate = ({ Name, Events, Deets }: mailDeets) => {
             <Text style={paragraph}>
               We trust that you will bring your best self, uphold the highest
               standards of conduct, and engage responsibly as we welcome you to
-              Kalaiyugam—a celebration you will not forget.
+              Kalaiyugam: The celebration you will not forget.
             </Text>
             <Text style={paragraph}>
               Please ensure you carry a copy of this email as it serves as your
               OD letter and save the attached QR code for verification of your
-              registration for the following events {Events}.
+              registration for {Events} at Kalaiyugam: The Celebration of Art.
             </Text>
-            <div style={{ textAlign: 'center', margin: '20px 0' }}>
-              <Img src={`http://api.qrserver.com/v1/create-qr-code/?data=${Deets}`} width="150" height="150"/>
+            <div style={{ textAlign: "center", margin: "20px 0" }}>
+            <table
+              width="100%"
+              style={{
+                borderSpacing: 0,
+                borderCollapse: "collapse",
+                textAlign: "center",
+              }}
+            >
+              <tr>
+                <td style={{ padding: "30px", textAlign: "center" }}>
+                  <Img
+                  src={`http://api.qrserver.com/v1/create-qr-code/?data=${Deets}`}
+                  width="150"
+                  height="150"
+                  alt="QR Code"
+                  style={{
+                    display: "block",
+                    margin:"0 auto",
+                    maxWidth: "100%",
+                  }}
+              />
+                </td>
+              </tr>
+            </table>
             </div>
             <Text style={paragraph}>
               If you have any questions or require further assistance, feel free
@@ -106,19 +142,15 @@ const container = {
   backgroundColor: "#ffffff",
 };
 
-const footer = {
-  maxWidth: "580px",
-  margin: "0 auto",
-};
-
 const content = {
   padding: "5px 20px 10px 20px",
 };
 
 const logo = {
-  display: "grid",
-  placeItems: "center",
-  padding: 30,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  padding: "30px",
 };
 
 const sectionsBorders = {
