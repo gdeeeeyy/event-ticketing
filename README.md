@@ -8,15 +8,15 @@ Oh-sheet also has a QR Code reading feature to ensure proper check-in of all the
 
 1. Clone the Repository
 
-   git clone https://github.com/gdeeeeyy/event-ticketing.git
+   `git clone https://github.com/gdeeeeyy/event-ticketing.git`
 
 2. Run the web app locally on your machine
 
-   https://localhost:3000
+   `https://localhost:3000`
 
 3. Run the email server to view the email styling locally
 
-   https://localhost:3001
+   `https://localhost:3001`
 
 # Changes to be made
 
