@@ -17,9 +17,10 @@ interface mailDeets {
   Name?: string;
   Events?: string;
   Deets?: string;
+  email?: string
 }
 
-export const MailTemplate = ({ Name, Events, Deets }: mailDeets) => {
+export const MailTemplate = ({ Name, Events, Deets, email }: mailDeets) => {
   return (
     <Html>
       <Head />
@@ -75,7 +76,7 @@ export const MailTemplate = ({ Name, Events, Deets }: mailDeets) => {
             <Text style={paragraph}>
               Please ensure you carry a copy of this email as it serves as your
               OD letter and save the attached QR code for verification of your
-              registration for {Events} at Kalaiyugam: The Celebration of Art.
+              registration for the {Events} at Kalaiyugam: The Celebration of Art.
             </Text>
             <div style={{ textAlign: "center", margin: "20px 0" }}>
             <table

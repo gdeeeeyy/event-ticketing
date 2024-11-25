@@ -1,3 +1,4 @@
+import { Button } from "@react-email/components";
 import React, { useState } from "react";
 import BarcodeScannerComponent from "react-qr-barcode-scanner";
 

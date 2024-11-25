@@ -165,33 +165,44 @@ const Home: NextPage = () => {
         </button>
       )} */}
 
-          {qrData.length > 0 && (
-            <div>
-              {qrData.map((item, index) => (
-                <button
-                  key={index}
-                  onClick={async () => {
-                    try {
-                      const parsedItem = JSON.parse(item);
-                      await fetch("/api/mail", {
-                        method: "POST",
-                        body: JSON.stringify({
-                          Name: parsedItem["Full Name"],
-                          email: parsedItem["email"],
-                          Events: parsedItem["Events Interested"],
-                          Deets: JSON.stringify(parsedItem),
-                        }),
-                      });
-                    } catch (error) {
-                      console.error(`Failed to send email for item ${index + 1}:`, error);
-                    }
-                  }}
-                >
-                  Send Email {index + 1}
-                </button>
-              ))}
-            </div>
-          )}
+{qrData.length > 0 && (
+  <button
+    onClick={async () => {
+      try {
+        // Parse all qrData items into an array of objects
+        const emailData = qrData.map((item) => {
+          const parsedItem = JSON.parse(item);
+          return {
+            Name: parsedItem["Full Name"],
+            email: parsedItem["email"],
+            Events: parsedItem["Events Interested"],
+            Deets: JSON.stringify(parsedItem),
+          };
+        });
+
+        // Send all email data in a single POST request
+        const response = await fetch("/api/mail", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(emailData),
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to send emails: ${response.statusText}`);
+        }
+
+        console.log("All emails sent successfully!");
+      } catch (error) {
+        console.error("Failed to send emails:", error);
+      }
+    }}
+  >
+    Send All Emails
+  </button>
+)}
+
 </>
   );
 };
